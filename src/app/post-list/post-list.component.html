@@ -1,0 +1,24 @@
+<br/>
+<br/>
+<div class="row">
+  <div class="col-lg-12">
+    <h2 *ngIf="posts.length == 0">Aucuns posts pour le moment</h2>
+    <div class="list-group">
+      <div *ngFor="let post of posts, let i = index" [ngClass]="{'list-group-item-success': post.loveIt > 0, 'list-group-item-danger': post.loveIt < 0}" class="list-group-item list-group-item-action flex-column align-items-start">
+        <div class="d-flex justify-content-between">
+          <h2 class="mb-1">{{ post.title }}</h2>
+          <small><strong>{{ post.timestamp | date: 'dd/mm/yyyy à HH:mm' }}</strong></small>
+        </div><br />
+        <p class="mb-1">{{ post.content }}</p>
+        <br />
+        <div class="d-flex justify-content-between">
+            <div class="d-flex justify-content-between" style="width:30%">
+                <button class="btn btn-success" (click)="addLoveIt(post)">J'aime ce post</button>
+                <button class="btn btn-danger" (click)="removeLoveIt(post)">Je n'aime pas ce post</button>
+            </div>
+            <button class="btn btn-danger" (click)="onDeletePost(post)">Supprimer le post</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
